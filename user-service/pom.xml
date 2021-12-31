@@ -14,14 +14,6 @@
     <version>1.0.0</version>
     <name>user-service</name>
 
-    <developers>
-        <developer>
-            <name>Faruk Genç</name>
-            <email>omer@farukgenc.com</email>
-            <url>https://farukgenc.com</url>
-        </developer>
-    </developers>
-
     <properties>
         <java.version>1.8</java.version>
         <jwt.version>0.9.0</jwt.version>
@@ -122,16 +114,12 @@
     </dependencies>
 
     <build>
-
-        <finalName>spring-boot-boilerplate</finalName>
-
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-
     </build>
 
 </project>
