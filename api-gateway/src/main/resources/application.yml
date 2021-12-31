@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: api-gateway
+  sleuth:
+    sampler:
+      probability: 1.0
+  cloud:
+    gateway:
+      routes:
+        - id: bank-account
+          uri: lb://bank-account-service
+          predicates:
+            - Path=/bank-account/**
+        - id: order
+          uri: lb://order-service
+          predicates:
+            - Path=/order/**
+      discovery:
+        locator:
+          enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+server:
+  port: 9000
+
+eureka:
+  client:
+    serviceURL:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}:${random.uuid}
