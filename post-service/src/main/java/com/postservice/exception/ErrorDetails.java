@@ -1,4 +1,4 @@
-package com.postservice.controller;
+package com.postservice.exception;
 
 import java.util.Date;
 
