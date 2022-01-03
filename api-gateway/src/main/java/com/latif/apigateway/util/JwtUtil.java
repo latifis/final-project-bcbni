@@ -42,6 +42,4 @@ public class JwtUtil {
             throw new JwtTokenMissingException("JWT claims string is empty.");
         }
     }
-
-
 }
