@@ -1,28 +1,13 @@
 spring:
   application:
     name: api-gateway
-  jackson:
-    default-property-inclusion: NON_NULL
+#  jackson:
+#    default-property-inclusion: NON_NULL
   sleuth:
     sampler:
       probability: 1.0
   cloud:
     gateway:
-      #      routes:
-      #        - id: bank-account
-      #          uri: lb://bank-account-service
-      #          predicates:
-      #            - Path=/bank-account/**
-      #          filters:
-      #            - JwtAuthenticationFilter=RSA256,HS256
-      #            - RemoveResponseHeader=X-Powered-By
-      #        - id: order
-      #          uri: lb://order-service
-      #          predicates:
-      #            - Path=/order/**
-      #          filters:
-      #            - JwtAuthenticationFilter=RSA256,HS256
-      #            - RemoveResponseHeader=X-Powered-By
       discovery:
         locator:
           enabled: true
