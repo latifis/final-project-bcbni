@@ -3,37 +3,69 @@ package com.latif.userservice.model;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 
 @Getter
 @Setter
+@ToString
+@RequiredArgsConstructor
+@Data
 @Entity
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "users")
-public class User {
+@Table(name="users")
+public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
     @Column(unique = true)
-    private String username  ;
+    private String username;
 
     private String password;
 
+    private String role="user";
+
+    @Column(unique = true)
     private String email;
 
-    @CreationTimestamp
-    protected Date createdAt;
+    @Column(columnDefinition = "boolean default true")
+    private boolean is_registered=true;
 
+    @Column
     @UpdateTimestamp
-    protected Date updatedAt;
+    private Date updatedAt;
 
-    @Enumerated(EnumType.STRING)
-    private UserRole userRole;
+    @Column
+    @CreationTimestamp
+    private Date createdAt;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return this.is_registered;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return this.is_registered;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return this.is_registered;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return this.is_registered;
+    }
 }
