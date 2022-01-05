@@ -19,6 +19,7 @@ public class GatewayConfiguration {
                 .route("user", r->r.path("/users/**").filters(f -> f.filter(filter)).uri("lb://user-service"))
                 .route("login", r->r.path("/login/**").filters(f -> f.filter(filter)).uri("lb://user-service"))
                 .route("register", r->r.path("/register/**").filters(f -> f.filter(filter)).uri("lb://user-service"))
+                .route("log", r -> r.path("/logs/**").filters(f -> f.filter(filter)).uri("lb://log-service"))
                 .build();
     }
 }
