@@ -1,13 +1,54 @@
 spring:
   application:
     name: api-gateway
-#  jackson:
-#    default-property-inclusion: NON_NULL
+  jackson:
+    default-property-inclusion: NON_NULL
   sleuth:
     sampler:
       probability: 1.0
   cloud:
     gateway:
+      #      routes:
+      #        - id: auth
+      #          uri: lb://auth-service
+      #          predicates:
+      #            - Path=/users/**
+      #          filters:
+      #            - JwtAuthenticationFilter=RSA256,HS256
+      #            - RemoveResponseHeader=X-Powered-By
+      #        - id: auth
+      #          uri: lb://auth-service
+      #          predicates:
+      #            - Path=/auth/**
+
+      #        - id: post
+      #          uri: lb://post-service
+      #          predicates:
+      #            - Path=/posts/**
+      #          filters:
+      #            - JwtAuthenticationFilter=RSA256,HS256
+      #            - RemoveResponseHeader=X-Powered-By
+
+      #        - id: log
+      #          uri: lb://log-service
+      #          predicates:
+      #            - Path=/logs/**
+      #          filters:
+      #            - JwtAuthenticationFilter=RSA256,HS256
+      #            - RemoveResponseHeader=X-Powered-By
+
+      #        - id: post-swagger
+      #          uri: lb://post-service
+      #          predicates:
+      #            - Path=/post-swagger/**
+      #        - id: auth-swagger
+      #          uri: lb://auth-service
+      #          predicates:
+      #            - Path=/auth-swagger/**
+      #        - id: log-swagger
+      #          uri: lb://log-service
+      #          predicates:
+      #            - Path=/log-swagger/**
       discovery:
         locator:
           enabled: true
@@ -30,5 +71,6 @@ eureka:
 
 #secret key - should be encrypted
 jwt:
-  secret: yanglain
+  secret: kuncinyarahasia
+  expiration-time: 600000
   #ignore null fields in json
