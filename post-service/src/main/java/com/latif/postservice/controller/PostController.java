@@ -1,9 +1,11 @@
-package com.postservice.controller;
+package com.latif.postservice.controller;
 
-import com.postservice.exception.ResourceNotFoundException;
-import com.postservice.model.Post;
-import com.postservice.repository.PostRepository;
+import com.latif.postservice.exception.ResourceNotFoundException;
+import com.latif.postservice.model.Post;
+import com.latif.postservice.repository.PostRepository;
+import com.latif.postservice.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +15,12 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/cocreate")
+@RequestMapping("/posts")
 public class PostController {
+
+    @Autowired
+    private LogService logService;
+
     @Autowired
     private PostRepository postRepository;
 
@@ -32,8 +38,10 @@ public class PostController {
     }
 
     @PostMapping("/posts")
-    public Post createPost(@Valid @RequestBody Post post) {
-        return postRepository.save(post);
+    public ResponseEntity<Post> createPost(@Valid @RequestBody Post post) {
+        logService.send("Post Created");
+        final Post createdPost = postRepository.save(post);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdPost);
     }
 
     @PutMapping("/posts/{id}")
@@ -42,7 +50,9 @@ public class PostController {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new ResourceNotFoundException("Post not found for this id :: " + postId));
         post.setContent(postDetails.getContent());
+        post.setUserId(postDetails.getUserId());
         final Post updatedPost = postRepository.save(post);
+        logService.send("Post Updated");
         return ResponseEntity.ok(updatedPost);
     }
 
@@ -55,6 +65,7 @@ public class PostController {
         postRepository.delete(post);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
+        logService.send("Post Deleted");
         return response;
     }
 }

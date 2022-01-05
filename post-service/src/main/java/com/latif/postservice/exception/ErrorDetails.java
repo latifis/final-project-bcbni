@@ -1,4 +1,4 @@
-package com.postservice.exception;
+package com.latif.postservice.exception;
 
 import java.util.Date;
 
