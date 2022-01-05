@@ -1,6 +1,5 @@
 # Final Project BC BNI
 This is a project for creating APIs with Spring Boot MVC.
-Here API access token encapsulated/encrypted with JWT token based system.
  - Anyone team can join using email 
  - As a user can see their profiles
  - As a user can post
