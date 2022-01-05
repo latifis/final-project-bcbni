@@ -38,7 +38,7 @@ public class UserController {
         }catch (Exception e){
             if(e.getMessage().equalsIgnoreCase("Duplicated")){
                 return new ResponseEntity(new BaseResponse(Boolean.FALSE,
-                        "Duplicated"), HttpStatus.CONFLICT);
+                        "Use Another Name"), HttpStatus.CONFLICT);
             }
             return new ResponseEntity(new BaseResponse(Boolean.FALSE,
                     "Internal Server Error"), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -58,6 +58,25 @@ public class UserController {
             if(e.getMessage().equalsIgnoreCase("Bad Credential")){
                 return new ResponseEntity(new BaseResponse(Boolean.FALSE,
                         "Bad Credential"), HttpStatus.UNAUTHORIZED);
+            }
+            return new ResponseEntity(new BaseResponse(Boolean.FALSE,
+                    "Internal Server Error"), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getAllUserInfo(Principal principal){
+        if (principal.getName() == null){
+            return new ResponseEntity(new BaseResponse(Boolean.FALSE,
+                    "Bad Request"), HttpStatus.BAD_REQUEST);
+        }
+        try {
+            List<UserInfo> usersInfo = userService.getAllUserInfo(principal.getName());
+            return ResponseEntity.ok(new BaseResponse<>(usersInfo));
+        }catch (Exception e){
+            if(e.getMessage().equalsIgnoreCase("Unauthorized")){
+                return new ResponseEntity(new BaseResponse(Boolean.FALSE,
+                        "Unauthorized"), HttpStatus.UNAUTHORIZED);
             }
             return new ResponseEntity(new BaseResponse(Boolean.FALSE,
                     "Internal Server Error"), HttpStatus.INTERNAL_SERVER_ERROR);
