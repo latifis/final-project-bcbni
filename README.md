@@ -77,4 +77,5 @@ bin\windows\kafka-console-consumer.bat --topic finalprojectfix --from-beginning 
  - Create Logs
  ![alt text](https://github.com/latifis/etc/blob/main/final-project-bcbni/create-logs.png?raw=true)
 8. Testing JUnit Test
+
 ![alt text](https://github.com/latifis/etc/blob/main/final-project-bcbni/unit-test.png?raw=true)
