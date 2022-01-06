@@ -6,6 +6,10 @@ This is a project for creating APIs with Spring Boot MVC.
  - As a admin can see, edit and delete all post by id
  - As a user can see, edit, and delete their post
  - Creating Logs
+## Entity Relationship Diagram
+![alt text](https://github.com/latifis/etc/blob/main/final-project-bcbni/erd.png?raw=true)
+## High Level Architecture
+![alt text](https://github.com/latifis/etc/blob/main/final-project-bcbni/hla.png?raw=true)
 ## Getting Started
 You can download this repo or clone using below command. (folder-name will be project folder in which you want to start your project).
 ```
