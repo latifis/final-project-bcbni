@@ -30,11 +30,13 @@ https://github.com/latifis/final-project-bcbni
 https://kafka.apache.org/downloads
 ```
 3. Setting Zookeeper
+
 Now you must set dataDir in zookeeper properties
 ```
 dataDir=D:\Kafka\\zookeeper
 ```
 4. Setting Server
+
 Now you must set logDirs in server properties
 ```
 log.dirs=D:\Kafka\\kafka-logs
