@@ -22,9 +22,9 @@ public class LogController {
     private final LogService logService;
 
     @PostMapping
-    public ResponseEntity<?> create(@Valid @RequestBody LogInput input){
+    public ResponseEntity<BaseResponse<?>> create(@Valid @RequestBody LogInput input){
         Log logCreated = logService.create(input);
-        return ResponseEntity.ok(logCreated);
+        return ResponseEntity.ok(new BaseResponse<>(input));
     }
 
     @GetMapping
