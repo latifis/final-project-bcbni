@@ -37,14 +37,14 @@ public class PostServiceTest {
 
     @Test
     public void getAll_WillReturnListCommentOutput() {
-        Iterable<Post> comments = EASY_RANDOM.objects(Post.class, 4)
+        Iterable<Post> post = EASY_RANDOM.objects(Post.class, 4)
                 .collect(Collectors.toList());
-        when(postRepository.findAll()).thenReturn((List<Post>) comments);
+        when(postRepository.findAll()).thenReturn((List<Post>) post);
 
         var result = postController.getAllPosts();
 
         List<Post> outputs = new ArrayList<>();
-        for (Post product: comments) {
+        for (Post product: post) {
             outputs.add(mapper.map(product, Post.class));
         }
         verify(postRepository, times(1)).findAll();
