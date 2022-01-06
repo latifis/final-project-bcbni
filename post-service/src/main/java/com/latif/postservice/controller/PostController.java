@@ -1,5 +1,6 @@
 package com.latif.postservice.controller;
 
+import com.latif.postservice.payload.BaseResponse;
 import com.latif.postservice.exception.ResourceNotFoundException;
 import com.latif.postservice.model.Post;
 import com.latif.postservice.repository.PostRepository;
@@ -30,22 +31,22 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable(value = "id") Long postId)
+    public ResponseEntity<BaseResponse<Post>> getPostById(@PathVariable(value = "id") Long postId)
             throws ResourceNotFoundException {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new ResourceNotFoundException("Post not found for this id :: " + postId));
-        return ResponseEntity.ok().body(post);
+        return ResponseEntity.ok().body(new BaseResponse<>(post));
     }
 
     @PostMapping("/posts")
-    public ResponseEntity<Post> createPost(@Valid @RequestBody Post post) {
+    public ResponseEntity<BaseResponse<Post>> createPost(@Valid @RequestBody Post post) {
         logService.send("Post Created");
         final Post createdPost = postRepository.save(post);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdPost);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new BaseResponse<>(post));
     }
 
     @PutMapping("/posts/{id}")
-    public ResponseEntity<Post> updatePost(@PathVariable(value = "id") Long postId,
+    public ResponseEntity<BaseResponse<Post>> updatePost(@PathVariable(value = "id") Long postId,
                                            @Valid @RequestBody Post postDetails) throws ResourceNotFoundException {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new ResourceNotFoundException("Post not found for this id :: " + postId));
@@ -53,7 +54,7 @@ public class PostController {
         post.setUserId(postDetails.getUserId());
         final Post updatedPost = postRepository.save(post);
         logService.send("Post Updated");
-        return ResponseEntity.ok(updatedPost);
+        return ResponseEntity.ok(new BaseResponse<>(post));
     }
 
     @DeleteMapping("/posts/{id}")
