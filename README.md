@@ -56,3 +56,23 @@ bin\windows\kafka-console-consumer.bat --topic finalprojectfix --from-beginning 
 > mvn clean install (and then running spring boot run)
 ```
 8. Testing with Postman
+ - Setting ENV
+ ![alt text](https://github.com/latifis/etc/blob/main/final-project-bcbni/set-env.png?raw=true)
+ - Register
+ ![alt text](https://github.com/latifis/etc/blob/main/final-project-bcbni/register.png?raw=true)
+ - Login
+ ![alt text](https://github.com/latifis/etc/blob/main/final-project-bcbni/login.png?raw=true)
+ - Get Info This User
+ ![alt text](https://github.com/latifis/etc/blob/main/final-project-bcbni/get-info-this-user.png?raw=true)
+ - Get All Users
+ ![alt text](https://github.com/latifis/etc/blob/main/final-project-bcbni/get-all-user.png?raw=true)
+ - Create Post
+ ![alt text](https://github.com/latifis/etc/blob/main/final-project-bcbni/create-post.png?raw=true)
+ - Get Post by Id
+ ![alt text](https://github.com/latifis/etc/blob/main/final-project-bcbni/get-post-by-id.png?raw=true)
+ - Update Post by Id
+ ![alt text](https://github.com/latifis/etc/blob/main/final-project-bcbni/update-post-by-id.png?raw=true)
+ - Delete Post by Id
+ ![alt text](https://github.com/latifis/etc/blob/main/final-project-bcbni/delete-post-by-id.png?raw=true)
+ - Create Logs
+ ![alt text](https://github.com/latifis/etc/blob/main/final-project-bcbni/create-logs.png?raw=true)
